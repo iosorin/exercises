@@ -1,7 +1,13 @@
 class IsogramChecker {
-
     boolean isIsogram(String phrase) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
-    }
+        if (phrase.length() == 0) return true;
 
+        String sorted = phrase.toLowerCase()
+                .chars()
+                .sorted()
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return !sorted.matches(".*(\\w)\\1+.*");
+    }
 }
